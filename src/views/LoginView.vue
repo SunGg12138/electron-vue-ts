@@ -57,9 +57,9 @@ export default Vue.extend({
     },
     async toLogin () {
       const { success } = await window.api.login(this.loginForm)
-      // if (success) {
-
-      // }
+      if (success) {
+        window.api.send('login/success')
+      }
     }
   },
   components: {
