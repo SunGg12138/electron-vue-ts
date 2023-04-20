@@ -7,7 +7,7 @@
     <div class="form-box">
       <el-form :model="loginForm" status-icon ref="loginForm" label-width="0px" :rules="rules">
         <el-form-item label="" prop="loginName">
-          <el-input v-model.number="loginForm.loginName" placeholder="请输入登录名"></el-input>
+          <el-input v-model="loginForm.loginName" placeholder="请输入登录名"></el-input>
         </el-form-item>
         <el-form-item label="" prop="password">
           <el-input type="password" v-model="loginForm.password" autocomplete="off" placeholder="请输入密码" show-password></el-input>

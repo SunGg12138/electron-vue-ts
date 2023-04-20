@@ -4,6 +4,7 @@
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
     <nav>
       <router-link to="/">Home</router-link> |
+      <router-link to="/tools/search-engine">搜索词</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/login">Login</router-link>
     </nav>

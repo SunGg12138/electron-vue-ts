@@ -21,6 +21,18 @@ const routes: Array<RouteConfig> = [
     ]
   },
   {
+    path: '/tools',
+    name: 'tools',
+    component: () => import(/* webpackChunkName: "about" */ '../views/tools/ToolsView.vue'),
+    children: [
+      {
+        path: '/tools/search-engine',
+        name: 'search-engine',
+        component: () => import(/* webpackChunkName: "about" */ '../views/tools/SearchEngineView.vue')
+      }
+    ]
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => import(/* webpackChunkName: "about" */ '../views/LoginView.vue')
