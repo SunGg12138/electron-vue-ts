@@ -5,8 +5,8 @@ import * as SizeConst from '@/const/size'
 
 export async function show() {
   const loginWin = new BrowserWindow({
-    width: SizeConst.LoginWindow.width,
-    height: SizeConst.LoginWindow.height,
+    width: SizeConst.LoginWindowSize.width,
+    height: SizeConst.LoginWindowSize.height,
     maximizable: false,
     backgroundColor: '#fff',
     center: true,

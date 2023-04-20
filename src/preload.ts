@@ -17,7 +17,7 @@ const api = {
     })
   },
 
-  removeListener (channel: string, listener: () => void) {
+  removeListener (channel: string, listener: (args: any) => void) {
     ipcRenderer.removeListener(channel, listener)
   }
 }

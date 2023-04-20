@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import * as SizeConst from '@/const/size'
+import * as CONST from '@/const/size'
 
 export default Vue.extend({
   name: 'LoginView',
@@ -32,7 +32,7 @@ export default Vue.extend({
         loginName: '',
         password: ''
       },
-      windowSize: SizeConst.LoginWindow,
+      windowSize: CONST.LoginWindowSize,
       rules: {
         loginName: [
           { required: true, message: '请输入登录名', trigger: 'blur' },

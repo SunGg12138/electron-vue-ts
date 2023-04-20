@@ -12,11 +12,11 @@
           <div>搜索总页数</div>
         </el-form-item>
       </el-form>
-      <div v-if="searchLog">
+      <div v-if="searchLog.length">
         <el-input
           type="textarea"
           placeholder=""
-          v-model="searchLog"
+          v-model="searchLogText"
           show-word-limit
           :disabled="true"
           :rows="20"
@@ -44,14 +44,29 @@ export default Vue.extend({
         ]
       },
       // 搜索的日志
-      searchLog: ''
+      searchLog: [] as string[]
     }
   },
   methods: {
-    submitForm () {
-      window.api.startSearchEngine({
-        ...this.searchForm
-      })
+    async submitForm () {
+      window.api.on('tooles/search-engine/log/info', this.webLog.bind(this))
+      try {
+        await window.api.startSearchEngine({
+          ...this.searchForm
+        })
+      } catch (error) {
+        console.log(error)
+      }
+      window.api.removeListener('tooles/search-engine/log/info', this.webLog)
+    },
+
+    webLog (log: string) {
+      this.searchLog.push(log)
+    }
+  },
+  computed: {
+    searchLogText (): string {
+      return this.searchLog.join('\n')
     }
   },
   components: {
