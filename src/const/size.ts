@@ -4,6 +4,6 @@ export const LoginWindowSize = {
 }
 
 export const HomeWindowSize = {
-  width: 800,
-  height: 600
+  width: 860,
+  height: 640
 }

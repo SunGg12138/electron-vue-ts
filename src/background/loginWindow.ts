@@ -19,13 +19,13 @@ export async function show() {
   })
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
-    await loginWin.loadURL(path.join(process.env.WEBPACK_DEV_SERVER_URL + '/login'))
+    await loginWin.loadURL(path.join(process.env.WEBPACK_DEV_SERVER_URL + '#login'))
     
     if (!process.env.IS_TEST) loginWin.webContents.openDevTools()
   } else {
     createProtocol('app')
     // Load the index.html when not in development
-    loginWin.loadURL('app://./index.html/login')
+    loginWin.loadURL('app://./index.html#login')
   }
 
   return loginWin;
