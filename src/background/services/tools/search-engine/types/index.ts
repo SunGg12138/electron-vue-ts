@@ -1,5 +1,5 @@
 export interface SearchEngineOptions {
     keywords: string;
-    totalPage: number;
+    totalPage?: number;
     timearea?: string;
 }

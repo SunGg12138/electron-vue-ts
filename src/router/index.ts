@@ -9,6 +9,7 @@ const routes: Array<RouteConfig> = [
     path: '/',
     name: 'home',
     component: HomeView,
+    redirect: '/tools/search-engine',
     children: [
       {
         path: '/about',

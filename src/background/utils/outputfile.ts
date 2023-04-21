@@ -6,12 +6,13 @@ import * as db from '@/background/db'
 
 const cachePath = app.getPath('userData')
 
-export default class Outputfile {
-    filepath: string;
+class Outputfile {
+    readonly filepath: string;
 
     constructor (type: string) {
         const random = `${randomStr(10)}-${Date.now()}`
         this.filepath = path.join(cachePath, `/outputfile/${random}`)
+        fs.ensureFileSync(this.filepath)
         db.outputfile.insertOne({
             type,
             filepath: this.filepath,
@@ -31,6 +32,8 @@ export default class Outputfile {
         return fs.readFile(this.filepath)
     }
 }
+
+export default Outputfile
 
 export function outputfile (type: string) {
     return new Outputfile(type)

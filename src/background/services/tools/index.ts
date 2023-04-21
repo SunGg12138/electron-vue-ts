@@ -6,14 +6,19 @@ const CONST = {
     searchEngineFileType: 'search-engine'
 }
 
-export async function searchEngine(options: SearchEngineOptions) {
+export async function searchEngine(options: SearchEngineOptions): Promise<typeof DownloadOutputfile> {
     const file = utils.outputfile(CONST.searchEngineFileType)
     // 编码格式
-    await file.append(Buffer.from(`\xEF\xBB\xBF`, 'binary'));
+    await file.append(Buffer.from(`\xEF\xBB\xBF`, 'binary'))
     // 添加表头
     await file.append([
         '标题', '时间', '描述', '来源', '链接'
-    ].join(','));
+    ].join(',') + '\n');
 
     await baiduSearchEngine.spider(file, options)
+
+    return {
+        outputfilePath: file.filepath,
+        ext: 'csv',
+    }
 }

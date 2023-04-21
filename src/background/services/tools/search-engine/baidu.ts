@@ -1,8 +1,8 @@
 import axios from 'axios'
 import cheerio from 'cheerio'
+import moment from 'moment'
 import * as utils from '@/background/utils'
 import { SearchEngineOptions } from './types'
-import { webContents } from 'electron'
 import logger from '@/background/lib/logger'
 
 const request = axios.create({
@@ -15,7 +15,7 @@ const request = axios.create({
 
 export async function spider (outputfile: typeof Outputfile, options: SearchEngineOptions) {
     const {
-        keywords, totalPage, timearea
+        keywords, totalPage = 50, timearea
     } = options;
 
     webLog(`开始: 关键词-${keywords}、总页数-${totalPage}、时间范围-${timearea || '无'}`);
@@ -28,7 +28,7 @@ export async function spider (outputfile: typeof Outputfile, options: SearchEngi
         for (let item of pageData) {
             await outputfile.append([
                 item.title, item.time, item.caption, item.source, item.link,
-            ].join(','));
+            ].join(',') + '\n');
         }
         
         await utils.sleep(1000, 500);
@@ -127,8 +127,5 @@ function getTimeQuery (timearea?: string): string {
 
 // 输出给前端的日志
 function webLog (log: string) {
-    const content = webContents.getFocusedWebContents()
-    if (content) {
-        content.send('tooles/search-engine/log/info', log)
-    }
+    mainWin.webContents.send('tooles/search-engine/log/info', `[${moment().format('YYYY-MM-DD hh:mm:ss.ms')}] ${log}`)
 }

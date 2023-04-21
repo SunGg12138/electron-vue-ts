@@ -5,6 +5,5 @@ import logger from '@/background/lib/logger';
 // 搜索引擎
 ipcMain.handle('tools/search-engine', async function (_event, args) {
   logger.info('handle tools/search-engine', args)
-  await Services.searchEngine(args);
+  return Services.searchEngine(args);
 });
-
